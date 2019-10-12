@@ -20,12 +20,25 @@ public class BlockSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (spawnTimer < elapsedTime)
+        if (spawnTimer/2.0f < elapsedTime)
         {
-            Instantiate(obstacle, new Vector3(), this.transform.rotation);
+            Instantiate(obstacle, GetSpawnPosition(), Quaternion.identity);
             elapsedTime = 0;
         }
 
         elapsedTime += Time.deltaTime;
+    }
+
+    Vector3 GetSpawnPosition()
+    {
+        float x = 0f, z = 0f;
+
+        x = Random.Range(-5.0f, 5.0f);
+        z = Random.Range(-5.0f, 5.0f);
+        var position = new Vector3(x, 15, z);
+
+
+
+        return position;
     }
 }
